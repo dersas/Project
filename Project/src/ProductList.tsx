@@ -29,7 +29,7 @@ const ProductList: React.FC = () => {
   }, [dataList]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/products")
+    fetch("./database.json")
       .then((response) => response.json())
       .then((data: Product[]) => {
         setDataList(data);
@@ -63,7 +63,7 @@ const ProductList: React.FC = () => {
       <div className="book-grid">
         {dataList
           .filter((data) =>
-            data.genre.some((g) => g.toLowerCase() === "fantasy")
+            data.genre.some((g) => g.toLowerCase() === "fantasy"),
           )
           .slice(0, 4)
           .map((data) => (
@@ -93,7 +93,7 @@ const ProductList: React.FC = () => {
       <div className="book-grid">
         {dataList
           .filter((data) =>
-            data.genre.some((g) => g.toLowerCase() === "classic")
+            data.genre.some((g) => g.toLowerCase() === "classic"),
           )
           .slice(0, 4)
           .map((data) => (
