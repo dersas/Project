@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom";
+import CurrencySelector from "./CurrencySelector";
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  selectedCurrency: string;
+  onCurrencyChange: (currency: string) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({
+  selectedCurrency,
+  onCurrencyChange,
+}) => {
   return (
     <header style={{ borderBottom: "white 2px solid" }}>
       <h1 style={{ textAlign: "center" }}>An Open Page</h1>
@@ -23,6 +32,10 @@ const Header: React.FC = () => {
           </Link>
         </li>
       </ul>
+      <CurrencySelector
+        selectedCurrency={selectedCurrency}
+        onCurrencyChange={onCurrencyChange}
+      />
     </header>
   );
 };

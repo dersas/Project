@@ -3,14 +3,14 @@ import React, { useState } from "react";
 interface CurrencyConverterProps {
   price: number;
   currency: string;
+  selectedCurrency: string;
 }
 
 const CurrencyConverter: React.FC<CurrencyConverterProps> = ({
   price,
   currency,
+  selectedCurrency,
 }) => {
-  const [selectedCurrency, setSelectedCurrency] = useState<string>("EUR");
-
   const getCurrencySymbol = (currency: string): string => {
     switch (currency) {
       case "EUR":
@@ -37,22 +37,11 @@ const CurrencyConverter: React.FC<CurrencyConverterProps> = ({
     }
   };
 
-  const handleCurrencyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedCurrency(e.target.value);
-  };
-
   return (
-    <div>
-      <span>
-        {getCurrencySymbol(selectedCurrency)}
-        {(price * getCurrencyRate(selectedCurrency)).toFixed(2)}
-      </span>
-      <select value={selectedCurrency} onChange={handleCurrencyChange}>
-        <option value="EUR">EUR</option>
-        <option value="USD">USD</option>
-        <option value="GBP">GBP</option>
-      </select>
-    </div>
+    <span>
+      {getCurrencySymbol(selectedCurrency)}
+      {(price * getCurrencyRate(selectedCurrency)).toFixed(2)}
+    </span>
   );
 };
 

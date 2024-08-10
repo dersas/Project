@@ -2,14 +2,21 @@ import { useEffect, useMemo, useState } from "react";
 import { Product } from "./typing";
 import CurrencyConverter from "./CurrencyConverter";
 import React from "react";
-import Cart from "./cart";
 
 interface SelectedItem extends Product {
   selectedId: number;
   quantidy?: number;
 }
 
-const ProductList: React.FC = () => {
+interface ProductListProps {
+  products: Product[];
+  selectedCurrency: string;
+}
+
+const ProductList: React.FC<ProductListProps> = ({
+  products,
+  selectedCurrency,
+}) => {
   const [dataList, setDataList] = useState<Product[]>([]);
   const [cartItems, setCartItems] = useState<SelectedItem[]>([]);
 
@@ -24,7 +31,7 @@ const ProductList: React.FC = () => {
   };
 
   const randomBooks = useMemo(() => {
-    const randomList = [...dataList].sort(() => 0.5 - Math.random());
+    const randomList = [...products].sort(() => 0.5 - Math.random());
     return randomList.slice(0, 8);
   }, [dataList]);
 
@@ -54,14 +61,18 @@ const ProductList: React.FC = () => {
               style={{ width: "auto", height: "7rem" }}
             />
             <p style={{ fontSize: "8px" }}>Description: {data.description} </p>
-            <CurrencyConverter price={data.price} currency={data.currency} />
+            <CurrencyConverter
+              price={data.price}
+              currency="EUR"
+              selectedCurrency={selectedCurrency}
+            />
             <button onClick={() => addToCart(data)}>Buy</button>
           </div>
         ))}
       </div>
       <h2 className="section-title">Why not try some Fantasy?</h2>
       <div className="book-grid">
-        {dataList
+        {products
           .filter((data) =>
             data.genre.some((g) => g.toLowerCase() === "fantasy")
           )
@@ -84,14 +95,18 @@ const ProductList: React.FC = () => {
                 Description: {data.description}{" "}
               </p>
 
-              <CurrencyConverter price={data.price} currency={data.currency} />
+              <CurrencyConverter
+                price={data.price}
+                currency="EUR"
+                selectedCurrency={selectedCurrency}
+              />
               <button onClick={() => addToCart(data)}>Buy</button>
             </div>
           ))}
       </div>
       <h2 className="section-title">The classics</h2>
       <div className="book-grid">
-        {dataList
+        {products
           .filter((data) =>
             data.genre.some((g) => g.toLowerCase() === "classic")
           )
@@ -113,11 +128,14 @@ const ProductList: React.FC = () => {
               <p style={{ fontSize: "8px" }}>
                 Description: {data.description}{" "}
               </p>
-              <CurrencyConverter price={data.price} currency={data.currency} />
+              <CurrencyConverter
+                price={data.price}
+                currency="EUR"
+                selectedCurrency={selectedCurrency}
+              />
             </div>
           ))}
       </div>
-      <Cart cartItems={cartItems} />
     </div>
   );
 };
