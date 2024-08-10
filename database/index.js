@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import productsRouter from "./products/productsRouter.js";
+import ordersRouter from "./orders/ordersRouter.js";
 import dbService from "./db/mongo.js";
 import cors from "cors";
 
@@ -18,6 +19,7 @@ app.use(
 app.use(express.json());
 
 app.use(productsRouter);
+app.use(ordersRouter);
 
 await dbService.initializeDb(); // Inicializa a BD
 

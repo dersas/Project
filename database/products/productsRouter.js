@@ -7,7 +7,6 @@ const router = express.Router();
 router.get("/products", async (req, res) => {
   const name = req.query.name;
 
-  // TODO: implementar regex para pesquisar todos os produtos que contenham $regex
   if (name) {
     const products = await productsService.getProductsByName(name);
     return res.status(200).json(products);
@@ -30,7 +29,6 @@ router.post("/products", async (req, res) => {
   res.status(201).json(updatedProductsList);
 });
 
-// TODO: Editar um produto existente
 router.put("/products/:id", async (req, res) => {
   const result = await productsService.updateProduct(req.params.id, req.body);
   if (!result || result.modifiedCount === 0) {
