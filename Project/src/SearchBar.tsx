@@ -1,34 +1,30 @@
 import { useState, useEffect } from "react";
 import { Product } from "./typing";
+import { useCart } from "./CartContext";
+import CurrencyConverter from "./CurrencyConverter";
 
-const SearchBar: React.FC = () => {
-  const [dataList, setDataList] = useState<Product[]>([]);
+interface ProductListProps {
+  products: Product[];
+  selectedCurrency: string;
+}
+
+const SearchBar: React.FC<ProductListProps> = ({
+  products,
+  selectedCurrency,
+}) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState<Product[]>([]);
   const [showResults, setShowResults] = useState(false);
+  const { addToCart } = useCart();
 
   useEffect(() => {
-    fetch("http://localhost:3000/products")
-      .then((response) => response.json())
-      .then((data: Product[]) => {
-        setDataList(data);
-      });
-  }, []);
-
-  useEffect(() => {
-    const results = dataList.filter(
+    const results = products.filter(
       (product) =>
         product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.author.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setSearchResults(results);
-  }, [searchTerm, dataList]);
-
-  const handleBuy = (product: Product) => {
-    // Implement your buy logic here
-    console.log(`Buying ${product.title}`);
-    // You might want to add this product to a cart, open a modal, or navigate to a purchase page
-  };
+  }, [searchTerm, products]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -39,11 +35,11 @@ const SearchBar: React.FC = () => {
     <div style={{ position: "relative" }}>
       <input
         type="text"
-        placeholder="Search books..."
+        placeholder="Book or author"
         value={searchTerm}
         onChange={handleChange}
         style={{
-          width: "25%",
+          width: "35%",
           padding: "10px",
           fontSize: "16px",
         }}
@@ -53,8 +49,8 @@ const SearchBar: React.FC = () => {
           style={{
             position: "absolute",
             top: "100%",
-            left: "20%",
-            right: "20%",
+            left: "10%",
+            right: "10%",
             maxHeight: "400px",
             overflowY: "auto",
             backgroundColor: "darkgrey",
@@ -63,9 +59,9 @@ const SearchBar: React.FC = () => {
             zIndex: 1000,
           }}
         >
-          {searchResults.map((product) => (
+          {searchResults.map((data) => (
             <div
-              key={product._id}
+              key={data._id}
               style={{
                 padding: "10px",
                 borderBottom: "1px solid #eee",
@@ -75,8 +71,8 @@ const SearchBar: React.FC = () => {
               }}
             >
               <img
-                src={product.cover_image}
-                alt={product.title}
+                src={data.cover_image}
+                alt={data.title}
                 style={{
                   width: "50px",
                   height: "75px",
@@ -86,15 +82,17 @@ const SearchBar: React.FC = () => {
               />
               <div>
                 <h3 style={{ margin: "0 0 5px 0", fontSize: "16px" }}>
-                  {product.title}
+                  {data.title}
                 </h3>
-                <p style={{ margin: 0, fontSize: "14px" }}>{product.author}</p>
+                <p style={{ margin: 0, fontSize: "14px" }}>{data.author}</p>
               </div>
-              <p>
-                Price: {product.price} {product.currency}
-              </p>
+              <CurrencyConverter
+                price={data.price}
+                currency="EUR"
+                selectedCurrency={selectedCurrency}
+              />
               <button
-                onClick={() => handleBuy(product)}
+                onClick={() => addToCart(data)}
                 style={{
                   padding: "5px 10px",
                   backgroundColor: "lightgrey",

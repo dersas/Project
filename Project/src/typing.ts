@@ -8,4 +8,5 @@ export interface Product {
   cover_image: string;
   currency: string;
   price: number;
+  quantity?: number;
 }

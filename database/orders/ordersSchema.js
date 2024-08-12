@@ -18,6 +18,7 @@ const createOrderSchema = Joi.object({
     })
   ),
   status: Joi.string().optional().default("created"),
+  createdAt: Joi.date().optional(),
 });
 
 export default {

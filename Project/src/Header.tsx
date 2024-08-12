@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import CurrencySelector from "./CurrencySelector";
+import CartWidget from "./CartWidget";
 
 interface HeaderProps {
   selectedCurrency: string;
@@ -23,12 +24,9 @@ const Header: React.FC<HeaderProps> = ({
         <li>
           <Link to={"/about"}>About</Link>
         </li>
-        <li style={{ listStyle: "none" }}>
+        <li>
           <Link to={"/cart"}>
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRay0SfdAYA00zHxcHegaJME8l_83R5k1u4vQ&s"
-              style={{ width: "20px" }}
-            ></img>
+            <CartWidget />
           </Link>
         </li>
       </ul>

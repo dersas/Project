@@ -14,11 +14,18 @@ const CurrencySelector: React.FC<CurrencySelectorProps> = ({
   };
 
   return (
-    <select value={selectedCurrency} onChange={handleCurrencyChange}>
-      <option value="EUR">EUR</option>
-      <option value="USD">USD</option>
-      <option value="GBP">GBP</option>
-    </select>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "right",
+      }}
+    >
+      <select value={selectedCurrency} onChange={handleCurrencyChange}>
+        <option value="EUR">EUR</option>
+        <option value="USD">USD</option>
+        <option value="GBP">GBP</option>
+      </select>
+    </div>
   );
 };
 

@@ -29,7 +29,7 @@ function Root() {
         setProducts(data);
       })
       .catch((error) => {
-        setError("Error fetching products");
+        setError(error.message);
       });
   };
   return (
@@ -39,7 +39,7 @@ function Root() {
         onCurrencyChange={handleCurrencyChange}
       />
       <main>
-        <SearchBar />
+        <SearchBar selectedCurrency={selectedCurrency} products={products} />
 
         <div className="product-container">
           <ProductList

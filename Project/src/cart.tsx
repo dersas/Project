@@ -1,89 +1,118 @@
+import React, { useState } from "react";
+import { useCart } from "./CartContext";
 import Header from "./Header";
 import Footer from "./Footer";
-import React, { useState, useEffect } from "react";
-import { Product } from "./typing";
 import CurrencyConverter from "./CurrencyConverter";
+import SubmitOrderButton from "./SubmitOrder";
 
-interface CartItem extends Product {
-  quantity: number;
-}
-interface CartProps {
-  cartItems: CartItem[];
-}
+const Cart: React.FC = () => {
+  const {
+    cartItems,
+    addToCart,
+    removeFromCart,
+    deleteFromCart,
+    deleteAllCart,
+  } = useCart();
+  const [selectedCurrency, setSelectedCurrency] = useState<string>("EUR");
 
-const Cart: React.FC<CartProps> = ({ cartItems }) => {
-  const [cartItemsState, setCartItemsState] = useState<CartItem[]>([]);
+  const handleCurrencyChange = (currency: string) => {
+    setSelectedCurrency(currency);
+  };
 
-  useEffect(() => {
-    setCartItemsState(cartItems.map((item) => ({ ...item, quantity: 1 })));
-  }, [cartItems]);
-
-  const removeFromCart = (itemId: number) => {
-    setCartItemsState((prevItems) => {
-      const existingItem = prevItems.find((i) => i._id === itemId);
-      if (existingItem && existingItem.quantity > 1) {
-        return prevItems.map((i) =>
-          i._id === itemId ? { ...i, quantity: i.quantity - 1 } : i
-        );
-      } else {
-        return prevItems.filter((i) => i._id !== itemId);
+  const total = cartItems.reduce(
+    (sum, item) => Number((sum + item.price * item.quantity).toFixed(2)),
+    0
+  );
+  const submitOrder = async () => {
+    const orderItems = cartItems.map((item) => {
+      if (!item._id || !item.quantity || !item.price) {
+        console.error("Invalid item:", item);
+        throw new Error("Invalid item in cart");
       }
+      return {
+        productId: item._id,
+        quantity: item.quantity,
+        price: item.price,
+      };
     });
-  };
 
-  const deleteFromCart = (itemId: number) => {
-    setCartItemsState((prevItems) => prevItems.filter((i) => i._id !== itemId));
-  };
+    const order = {
+      items: orderItems,
+      status: "pending",
+      createdAt: new Date().toISOString(),
+    };
 
-  const getTotalPrice = () => {
-    return cartItemsState.reduce(
-      (total, item) => total + item.price * item.quantity,
-      0
-    );
+    try {
+      const response = await fetch("http://localhost:3000/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(order),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("Error response:", errorText); // Log the error response
+        throw new Error(
+          `Failed to submit order: ${response.status} ${errorText}`
+        );
+      }
+
+      const result = await response.json();
+      if (result != null || undefined) {
+        deleteAllCart();
+        alert("Your order has been submited");
+      }
+    } catch (error) {
+      console.error("Error submitting order:", error);
+    }
   };
 
   return (
     <div>
-      <h2>Cart</h2>
-      {cartItemsState.length === 0 ? (
-        <p>Your cart is empty.</p>
-      ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Quantity</th>
-              <th>Price</th>
-              <th>Total</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cartItems.map((data) => (
-              <tr key={data._id}>
-                <td>{data.title}</td>
-                <td>
-                  <button onClick={() => removeFromCart(data._id)}>-</button>
-                  {data.quantity}
-                  <button onClick={() => addToCart(data)}>+</button>
-                </td>
-                <td>{data.price}</td>
-                <td>{(data.price * data.quantity).toFixed(2)}</td>
-                <td>
-                  <button onClick={() => deleteFromCart(data._id)}>
-                    Remove
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-      <p>Total: </p>
-      <CurrencyConverter
-        price={Number(getTotalPrice().toFixed(2))}
-        currency=""
+      <Header
+        selectedCurrency={selectedCurrency}
+        onCurrencyChange={handleCurrencyChange}
       />
+      <main>
+        <div className="cart">
+          <h2>Your Cart</h2>
+          {cartItems.map((item) => (
+            <div
+              key={item._id}
+              className="product-item"
+              style={{ width: "200px" }}
+            >
+              <img
+                style={{ width: "auto", height: "7rem" }}
+                src={item.cover_image}
+                alt={item.title}
+              />
+              <h3>{item.title}</h3>
+              <CurrencyConverter
+                price={item.price}
+                currency="EUR"
+                selectedCurrency={selectedCurrency}
+              />
+              <p>Quantity: {item.quantity}</p>
+              <div>
+                <button onClick={() => addToCart(item)}>+</button>
+                <button onClick={() => removeFromCart(item._id)}>-</button>
+                <button onClick={() => deleteFromCart(item._id)}>Remove</button>
+              </div>
+            </div>
+          ))}
+          <h3>Total: </h3>
+          <CurrencyConverter
+            price={total}
+            currency="EUR"
+            selectedCurrency={selectedCurrency}
+          />
+          <SubmitOrderButton onOrderSubmit={submitOrder} />
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 };

@@ -2,11 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Product } from "./typing";
 import CurrencyConverter from "./CurrencyConverter";
 import React from "react";
-
-interface SelectedItem extends Product {
-  selectedId: number;
-  quantidy?: number;
-}
+import { useCart } from "./CartContext";
 
 interface ProductListProps {
   products: Product[];
@@ -18,21 +14,11 @@ const ProductList: React.FC<ProductListProps> = ({
   selectedCurrency,
 }) => {
   const [dataList, setDataList] = useState<Product[]>([]);
-  const [cartItems, setCartItems] = useState<SelectedItem[]>([]);
-
-  const addToCart = (product: Product) => {
-    setCartItems((prevItems) => {
-      const newSelectedItem: SelectedItem = {
-        ...product,
-        selectedId: Date.now(),
-      };
-      return [...prevItems, newSelectedItem];
-    });
-  };
+  const { addToCart } = useCart();
 
   const randomBooks = useMemo(() => {
     const randomList = [...products].sort(() => 0.5 - Math.random());
-    return randomList.slice(0, 8);
+    return randomList.slice(0, 12);
   }, [dataList]);
 
   useEffect(() => {
@@ -60,7 +46,9 @@ const ProductList: React.FC<ProductListProps> = ({
               alt={data.title}
               style={{ width: "auto", height: "7rem" }}
             />
-            <p style={{ fontSize: "8px" }}>Description: {data.description} </p>
+            <p style={{ fontSize: "8px", fontStyle: "italic" }}>
+              Description: {data.description}{" "}
+            </p>
             <CurrencyConverter
               price={data.price}
               currency="EUR"
@@ -91,7 +79,7 @@ const ProductList: React.FC<ProductListProps> = ({
                 style={{ width: "auto", height: "7rem" }}
               />
 
-              <p style={{ fontSize: "8px" }}>
+              <p style={{ fontSize: "8px", fontStyle: "italic" }}>
                 Description: {data.description}{" "}
               </p>
 
@@ -125,7 +113,7 @@ const ProductList: React.FC<ProductListProps> = ({
                 style={{ width: "auto", height: "7rem" }}
               />
 
-              <p style={{ fontSize: "8px" }}>
+              <p style={{ fontSize: "8px", fontStyle: "italic" }}>
                 Description: {data.description}{" "}
               </p>
               <CurrencyConverter
@@ -133,6 +121,7 @@ const ProductList: React.FC<ProductListProps> = ({
                 currency="EUR"
                 selectedCurrency={selectedCurrency}
               />
+              <button onClick={() => addToCart(data)}>Buy</button>
             </div>
           ))}
       </div>
