@@ -19,7 +19,11 @@ const SubmitOrder: React.FC<SubmitOrderButtonProps> = ({ onOrderSubmit }) => {
   };
 
   return (
-    <button onClick={handleSubmit} disabled={cartItems.length === 0}>
+    <button
+      onClick={handleSubmit}
+      disabled={cartItems.length === 0}
+      style={{ height: "3rem", margin: "1rem 6rem" }}
+    >
       Submit
     </button>
   );

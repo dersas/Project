@@ -19,7 +19,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://cdn.kobo.com/book-images/63901e1f-e685-4659-8ba8-d1eab571a31e/1200/1200/False/to-kill-a-mockingbird-3.jpg",
       currency: "EUR",
-      price: "20",
+      price: "15",
     },
     {
       title: "1984",
@@ -30,7 +30,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuDdSW57QI3pCd85iLw4l-w0s0kvl3cCTyTQ&s",
       currency: "EUR",
-      price: "20",
+      price: "15",
     },
     {
       title: "Pride and Prejudice",
@@ -54,7 +54,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://skyhorse-us.imgix.net/covers/9781949846386.jpg?auto=format&w=298",
       currency: "EUR",
-      price: "20",
+      price: "15",
     },
     {
       title: "Moby-Dick",
@@ -66,7 +66,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://m.media-amazon.com/images/I/616R20nvohL._AC_UF1000,1000_QL80_.jpg",
       currency: "EUR",
-      price: "20",
+      price: "15",
     },
     {
       title: "The Lord of the Rings",
@@ -78,7 +78,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://prodimage.images-bn.com/pimages/9780544273443_p0_v3_s1200x630.jpg",
       currency: "EUR",
-      price: "20",
+      price: "25",
     },
     {
       title: "The Catcher in the Rye",
@@ -90,7 +90,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://cdn.britannica.com/94/181394-050-2F76F7EE/Reproduction-cover-edition-The-Catcher-in-the.jpg",
       currency: "EUR",
-      price: "20",
+      price: "15",
     },
     {
       title: "The Hobbit",
@@ -102,7 +102,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://cdn.kobo.com/book-images/a821b502-0d07-4921-ac14-e431625d04e7/1200/1200/False/the-hobbit-illustrated-by-alan-lee.jpg",
       currency: "EUR",
-      price: "20",
+      price: "15",
     },
     {
       title: "One Hundred Years of Solitude",
@@ -126,7 +126,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://m.media-amazon.com/images/I/71wXZB-VtBL._AC_UF1000,1000_QL80_.jpg",
       currency: "EUR",
-      price: "20",
+      price: "25",
     },
     {
       title: "The Odyssey",
@@ -138,7 +138,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://m.media-amazon.com/images/I/81g0AATkO9L._AC_UF350,350_QL50_.jpg",
       currency: "EUR",
-      price: "20",
+      price: "15",
     },
     {
       title: "The Divine Comedy",
@@ -162,7 +162,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://m.media-amazon.com/images/I/71OZJsgZzQL._AC_UF1000,1000_QL80_.jpg",
       currency: "EUR",
-      price: "20",
+      price: "25",
     },
     {
       title: "Crime and Punishment",
@@ -174,7 +174,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://m.media-amazon.com/images/I/71O2XIytdqL._AC_UF1000,1000_QL80_.jpg",
       currency: "EUR",
-      price: "20",
+      price: "25",
     },
     {
       title: "The Picture of Dorian Gray",
@@ -186,7 +186,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdvIXO1kQX8RI7ttHPGxzmJF5pCYoUM3FF2w&s",
       currency: "EUR",
-      price: "20",
+      price: "15",
     },
     {
       title: "Brave New World",
@@ -222,7 +222,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://prodimage.images-bn.com/pimages/2940013851351_p0_v1_s1200x630.jpg",
       currency: "EUR",
-      price: "20",
+      price: "25",
     },
     {
       title: "The Alchemist",
@@ -234,7 +234,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://m.media-amazon.com/images/I/61HAE8zahLL._AC_UF1000,1000_QL80_.jpg",
       currency: "EUR",
-      price: "20",
+      price: "15",
     },
     {
       title: "The Adventures of Huckleberry Finn",
@@ -270,7 +270,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://cdn.kobo.com/book-images/5ebc28cd-1f11-4df3-84ec-719309ee6ae4/1200/1200/False/don-quixote-136.jpg",
       currency: "EUR",
-      price: "20",
+      price: "25",
     },
     {
       title: "Frankenstein",
@@ -282,7 +282,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://cdn.kobo.com/book-images/040aad58-1cb1-4e46-9e0d-1984ab9981ca/1200/1200/False/frankenstein-the-original-1818-uncensored-edition-2.jpg",
       currency: "EUR",
-      price: "20",
+      price: "15",
     },
     {
       title: "Alice's Adventures in Wonderland",
@@ -306,7 +306,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://cdn.kobo.com/book-images/869050f5-1da7-4aa3-bc21-5c56388a5ea9/353/569/90/False/the-little-prince-52.jpg",
       currency: "EUR",
-      price: "20",
+      price: "15",
     },
     {
       title: "The Book Thief",
@@ -318,7 +318,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhwt1n1Q29s2EsJEDTEYd4x54swuiMjBgdUQ&s",
       currency: "EUR",
-      price: "20",
+      price: "25",
     },
     {
       title: "Slaughterhouse-Five",
@@ -354,7 +354,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://cdn.kobo.com/book-images/d3fa7c43-17e1-455a-b7fb-7ba8c38cdfad/1200/1200/False/fahrenheit-451-the-gripping-and-inspiring-classic-of-dystopian-science-fiction.jpg",
       currency: "EUR",
-      price: "20",
+      price: "15",
     },
     {
       title: "The Lord of the Flies",
@@ -366,7 +366,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://m.media-amazon.com/images/I/81Gn65uv+YL._AC_UF1000,1000_QL80_.jpg",
       currency: "EUR",
-      price: "20",
+      price: "15",
     },
     {
       title: "The Hitchhiker's Guide to the Galaxy",
@@ -414,7 +414,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://m.media-amazon.com/images/I/61su39k8NUL._AC_UF1000,1000_QL80_.jpg",
       currency: "EUR",
-      price: "20",
+      price: "25",
     },
     {
       title: "The Name of the Rose",
@@ -437,7 +437,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://cdn.kobo.com/book-images/57e53c11-537a-4164-99ed-12651e2e9daa/1200/1200/False/the-trial-151.jpg",
       currency: "EUR",
-      price: "20",
+      price: "15",
     },
     {
       title: "The Kite Runner",
@@ -461,7 +461,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://m.media-amazon.com/images/I/91UN5Yl-y8L._AC_UF894,1000_QL80_.jpg",
       currency: "EUR",
-      price: "20",
+      price: "25",
     },
     {
       title: "The Shadow of the Wind",
@@ -509,7 +509,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://cdn.kobo.com/book-images/d67304d4-0f1b-4c42-8843-35a8b8b0beb9/1200/1200/False/metamorphosis-182.jpg",
       currency: "EUR",
-      price: "20",
+      price: "15",
     },
     {
       title: "Gone with the Wind",
@@ -521,7 +521,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://m.media-amazon.com/images/I/91w1IHrUqZL._AC_UF1000,1000_QL80_.jpg",
       currency: "EUR",
-      price: "20",
+      price: "15",
     },
     {
       title: "The Wind in the Willows",
@@ -569,7 +569,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://cdn.kobo.com/book-images/af1757ed-1d7c-4f4d-ba58-93aaee8407bf/353/569/90/False/the-stand-1.jpg",
       currency: "EUR",
-      price: "20",
+      price: "25",
     },
     {
       title: "The Color Purple",
@@ -581,7 +581,7 @@ const seedProductsDb = async () => {
       cover_image:
         "https://m.media-amazon.com/images/I/71f6DRbcrsL._AC_UF1000,1000_QL80_.jpg",
       currency: "EUR",
-      price: "20",
+      price: "15",
     },
     {
       title: "The Silmarillion",

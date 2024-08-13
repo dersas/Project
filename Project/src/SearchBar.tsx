@@ -56,7 +56,7 @@ const SearchBar: React.FC<ProductListProps> = ({
             backgroundColor: "darkgrey",
             border: "1px solid #ddd",
             borderTop: "none",
-            zIndex: 1000,
+            zIndex: 1,
           }}
         >
           {searchResults.map((data) => (

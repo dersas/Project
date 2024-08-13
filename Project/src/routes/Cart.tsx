@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useCart } from "./CartContext";
-import Header from "./Header";
-import Footer from "./Footer";
-import CurrencyConverter from "./CurrencyConverter";
-import SubmitOrderButton from "./SubmitOrder";
+import { useCart } from "../CartContext";
+import Header from "../Header";
+import Footer from "../Footer";
+import CurrencyConverter from "../CurrencyConverter";
+import SubmitOrderButton from "../SubmitOrder";
 
 const Cart: React.FC = () => {
   const {
@@ -78,38 +78,44 @@ const Cart: React.FC = () => {
       <main>
         <div className="cart">
           <h2>Your Cart</h2>
-          {cartItems.map((item) => (
-            <div
-              key={item._id}
-              className="product-item"
-              style={{ width: "200px" }}
-            >
-              <img
-                style={{ width: "auto", height: "7rem" }}
-                src={item.cover_image}
-                alt={item.title}
-              />
-              <h3>{item.title}</h3>
-              <CurrencyConverter
-                price={item.price}
-                currency="EUR"
-                selectedCurrency={selectedCurrency}
-              />
-              <p>Quantity: {item.quantity}</p>
-              <div>
-                <button onClick={() => addToCart(item)}>+</button>
-                <button onClick={() => removeFromCart(item._id)}>-</button>
-                <button onClick={() => deleteFromCart(item._id)}>Remove</button>
+          <div className="book-grid">
+            {cartItems.map((item) => (
+              <div
+                key={item._id}
+                className="product-item"
+                style={{ width: "200px" }}
+              >
+                <img
+                  style={{ width: "auto", height: "7rem" }}
+                  src={item.cover_image}
+                  alt={item.title}
+                />
+                <h3>{item.title}</h3>
+                <CurrencyConverter
+                  price={item.price}
+                  currency="EUR"
+                  selectedCurrency={selectedCurrency}
+                />
+                <p>Quantity: {item.quantity}</p>
+                <div>
+                  <button onClick={() => addToCart(item)}>+</button>
+                  <button onClick={() => removeFromCart(item._id)}>-</button>
+                  <button onClick={() => deleteFromCart(item._id)}>
+                    Remove
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
-          <h3>Total: </h3>
-          <CurrencyConverter
-            price={total}
-            currency="EUR"
-            selectedCurrency={selectedCurrency}
-          />
-          <SubmitOrderButton onOrderSubmit={submitOrder} />
+            ))}
+          </div>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <h3>Total: </h3>
+            <CurrencyConverter
+              price={total}
+              currency="EUR"
+              selectedCurrency={selectedCurrency}
+            />
+            <SubmitOrderButton onOrderSubmit={submitOrder} />
+          </div>
         </div>
       </main>
       <Footer />

@@ -1,7 +1,12 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+
+  margin: 0 auto;
+
+  text-align: center;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -24,6 +29,7 @@
   align-items: center;
   text-align: center;
   transition: box-shadow 0.3s ease;
+  background-color: rgba(158, 158, 158, 0.405);
 }
 .book-grid {
   display: grid;
@@ -40,10 +46,55 @@
   display: block;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  position: relative;
+}
+
+.nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.nav li {
+  margin-left: 1rem;
+}
+
+.nav a {
+  text-decoration: none;
+  color: white;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.order-bar {
+  height: "2rem";
+  padding: 10px 0;
+  font-size: large;
+}
+
 input {
   display: block;
   margin: auto;
   margin-top: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: serif;
 }
 
 h3 {
@@ -58,5 +109,39 @@ h4 {
 
 li {
   list-style: none;
-  text-size-adjust: 20px;
+  text-size-adjust: 10px;
+}
+
+@media (max-width: 600px) {
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+
+  .nav.open {
+    max-height: 300px;
+    background-color: grey;
+    z-index: 2;
+  }
+
+  .nav ul {
+    flex-direction: column;
+  }
+
+  .nav li {
+    margin: 0;
+    padding: 1rem;
+    border-top: 1px solid #e0e0e0;
+    font-size: 1.5rem;
+  }
+
+  .hamburger {
+    display: block;
+  }
 }

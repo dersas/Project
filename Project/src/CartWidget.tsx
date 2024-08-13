@@ -9,11 +9,11 @@ const CartWidget: React.FC = () => {
 
   return (
     <Link to="/cart">
-      <div style={{ position: "relative" }}>
+      <span style={{ position: "relative" }}>
         <img
           src="https://pngimg.com/d/bookshelf_PNG107078.png"
           alt="The image for the cart"
-          style={{ width: "30px", height: "auto" }}
+          style={{ width: "40px", height: "auto" }}
         ></img>
         <div
           style={{
@@ -32,7 +32,7 @@ const CartWidget: React.FC = () => {
         >
           {itemCount}
         </div>
-      </div>
+      </span>
     </Link>
   );
 };

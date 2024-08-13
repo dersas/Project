@@ -47,7 +47,11 @@ const ProductList: React.FC<ProductListProps> = ({
               style={{ width: "auto", height: "7rem" }}
             />
             <p style={{ fontSize: "8px", fontStyle: "italic" }}>
-              Description: {data.description}{" "}
+              <b>
+                {" "}
+                <u>Description:</u>
+              </b>{" "}
+              {data.description}{" "}
             </p>
             <CurrencyConverter
               price={data.price}
@@ -58,7 +62,7 @@ const ProductList: React.FC<ProductListProps> = ({
           </div>
         ))}
       </div>
-      <h2 className="section-title">Why not try some Fantasy?</h2>
+      <h2 className="section-title">Why not try some Fantasy? 🐉</h2>
       <div className="book-grid">
         {products
           .filter((data) =>
@@ -80,7 +84,11 @@ const ProductList: React.FC<ProductListProps> = ({
               />
 
               <p style={{ fontSize: "8px", fontStyle: "italic" }}>
-                Description: {data.description}{" "}
+                <b>
+                  {" "}
+                  <u>Description:</u>
+                </b>{" "}
+                {data.description}{" "}
               </p>
 
               <CurrencyConverter
@@ -92,7 +100,7 @@ const ProductList: React.FC<ProductListProps> = ({
             </div>
           ))}
       </div>
-      <h2 className="section-title">The classics</h2>
+      <h2 className="section-title">The classics 🎩</h2>
       <div className="book-grid">
         {products
           .filter((data) =>
@@ -114,7 +122,11 @@ const ProductList: React.FC<ProductListProps> = ({
               />
 
               <p style={{ fontSize: "8px", fontStyle: "italic" }}>
-                Description: {data.description}{" "}
+                <b>
+                  {" "}
+                  <u>Description:</u>
+                </b>{" "}
+                {data.description}{" "}
               </p>
               <CurrencyConverter
                 price={data.price}
